@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>クッキーは全部で何枚？</title>
+</head>
+<body>
+    <style>
+       body {
+        max-width: 1200px;
+        font-family: 'Nunito', 'Helvetica', sans-serif;
+        background: linear-gradient(to right, #fffef0, #fff6e1);
+        color: #444;
+        margin: 0 auto;
+}
+
+h1 {
+    color: #ff9e69;
+    font-size: 2em;
+    text-shadow: 1px 1px #fff;
+    text-align: center;
+}
+
+.step-box .step {
+  display: none;
+}
+.step-box .step.visible {
+  display: block;
+  padding: 6px 10px;
+  border-left: 4px solid #ffa500;
+  margin-bottom: 8px;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.twins {
+    width: 300px;
+    height: auto;
+    margin-left: auto;
+    display: block;
+}
+.twins:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+}
+.highlight {
+    background: #fffaf0;
+    border: 2px dashed #ffe2c0;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 2px 2px 6px #f8d4c8;
+    margin-bottom: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.highlight:hover {
+    background: #feffeb;
+    transform: scale(1.02);
+}
+
+.question {
+  display: flex;
+  align-items: flex-start;
+  gap: 80px;
+}
+
+.x {
+    text-align: center;
+} 
+
+p {
+    font-size: 1.1em;
+    margin: 8px 0;
+}
+
+strong {
+    color: #ff9114;
+    font-weight: bold;
+}
+    </style>
+
+ <button onclick="startSpeech()">読み上げ開始</button>
+
+<h1><img src="Cookie.png" alt="クッキー">クッキーは全部で何枚？</h1>
+<div class="highlight x">もとの数がいくつなのかを求める考え方</div>
+<div class="question">
+  <div>
+    <p>クッキーをAさんとBさんに配りました</p>
+    <p>Aさんには全枚数の7分の２枚</p>
+    <p>Bさんには全枚数の3分の1枚よりも24枚多い枚数</p>
+    <p>クッキーは全部AさんとBさんに配りました</p>
+    <h2>クッキーは全部で何枚？</h2>
+  </div>
+  <img class="twins" src="twins.png" alt="クッキーを分ける子供たち">
+</div>
+<div class="step-box">
+  <p class="step visible">クッキーの枚数をx枚とすると、以下の式が成り立ちます</p>
+  <p class="step">Aさんのクッキー: 2/7x</p>
+  <p class="step">Bさんのクッキー: 1/3x + 24</p>
+  <p class="step">全体のクッキー数: x</p>
+</div>
+<div class="highlight question">
+    <div>
+    <p>この問題を解くためには、まずAさんとBさんのクッキーの枚数を求める必要があります。</p>
+    <p>Aさんのクッキーは全体の7分の2枚、Bさんのクッキーは全体の3分の1枚よりも24枚多い枚数です。</p>
+    <p>これらの情報をもとに、全体のクッキー数を求めることができます。</p>
+    <p>具体的には、Aさんのクッキー枚数を求めるために、全体のクッキー数を7で割り、2を掛けます。</p>
+    <p>Bさんのクッキー枚数を求めるためには、全体のクッキー数を3で割り、1を掛けた後に24枚を足します。</p>
+    <p>最後に、AさんとBさんのクッキー枚数を足し合わせて、全体のクッキー数を求めます。</p>
+    </div>
+    <img class="twins" src="shea.png" alt="クッキーを分ける子供たち">
+</div>
+<div class="highlight">
+    <p>この問題を解くための式は以下のようになります。</p>
+    <p><strong>x = (2/7)x + (1/3)x + 24</strong></p>
+    <p>この式を解くことで、クッキーの全体の枚数を求めることができます。</p>
+    <p><strong>x = 6/21x + 7/21x + 24<br>
+    = 13/21x + 24<br>
+    x-13/21x = 24<br>
+    8/21x = 24<br>
+    x = 24 ÷ 8/21<br>
+    = 24 x 21/8<br>
+    = 63</strong></p>
+    <p id="output"></p>
+
+
+<div class="highlight">
+    <p>クッキーの枚数は <strong>63枚</strong> です。</p>
+    <p>Aさんには <strong>45枚</strong>、 Bさんには <strong>18枚</strong> 配られました。</p>
+    <p>このように、問題を解くためには、与えられた条件をもとに式を立て、計算を行うことが重要です。</p>
+    <p>クッキーの枚数を求めることで、AさんとBさんがそれぞれ何枚のクッキーを持っているかを知ることができます。</p>
+</div>
+<script>
+    $(document).ready(function() {
+        // クッキーの枚数を計算
+        var totalCookies = x; // 全体のクッキー数
+        var aCookies = (2 / 7) * totalCookies; // Aさんのクッキー枚数
+        var bCookies = (1 / 3) * totalCookies + 24; // Bさんのクッキー枚数
+
+        // HTMLに値を表示
+        $('#a-cookies').text(aCookies);
+        $('#b-cookies').text(bCookies);
+        $('#total-cookies').text(totalCookies);
+    });
+   $(document).ready(function(){
+  $(".step-box").on("click", function(){
+    let nextStep = $(".step-box .step:not(.visible)").first();
+    if (nextStep.length) {
+      nextStep.addClass("visible");
+    }
+  });
+});
+        // クッキーの枚数を計算
+        const result = 24 * (21 / 8);
+        document.getElementById("output").textContent = `答えは ${result} 枚です🍪`;
+
+function startSpeech() {
+  const utter = new SpeechSynthesisUtterance("クッキーは全部で何枚？　もとの数がいくつなのかを求める考え方。　クッキーを、Aさんと　Bさんに配りました。Aさんには全枚数の7ぶんの2枚。　Bさんには全枚数の3ぶんの1枚よりも24枚多い枚数。　クッキーは全部、AさんとBさんに配りました。　クッキーは全部で何枚？　クッキーの枚数をx枚とすると、以下の式が成り立ちます。　この問題を解くためには、まずAさんとBさんのクッキーの枚数を求める必要があります。　Aさんのクッキーは全体の7ぶんの2枚、Bさんのクッキーは全体の3ぶんの1枚よりも24枚多い枚数です。　これらの情報をもとに、全体のクッキー数を求めることができます。　具体的には、Aさんのクッキー枚数を求めるために、全体のクッキー数を7で割り、2を掛けます。　Bさんのクッキー枚数を求めるためには、全体のクッキー数を3で割り、1を掛けた後に24枚を足します。　最後に、AさんとBさんのクッキー枚数を足し合わせて、全体のクッキー数を求めます。　この問題を解くための式は以下のようになります。　x イコール かっこ　7ぶんの２x プラス かっこ3ぶんの１x プラス 24　この式を解くことで、クッキーの全体の枚数を求めることができます。　x = 21ぶんの６x プラス 21ぶんの７x プラス 24、　イコール 21ぶんの13x プラス 24、　x マイナス 21ぶんの13x イコール 24、　21ぶんの８x イコール 24、　x イコール 24 わる 21ぶんの８、　イコール 24　かける ８ぶんの21、　イコール 63、　答えは 63 枚です。　Aさんには 18枚、Bさんには 45枚 配られました。　このように、与えられた条件をもとに式を立て、計算することが重要です。　クッキーの枚数を求めることで、AさんとBさんがそれぞれ何枚のクッキーを持っているかを知ることができます。");
+  utter.lang = "ja-JP";
+  speechSynthesis.speak(utter);
+}
+</script>
+    
+</body>
+</html>
